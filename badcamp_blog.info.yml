@@ -1,0 +1,14 @@
+name: Blog
+description: 'Provides Blog content type and related configuration. Use a <em>blog</em> to publish news content.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+  - views
+version: 8.
+package: BADCamp
