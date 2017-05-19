@@ -1,9 +1,16 @@
 <?php
 
+use Drupal\taxonomy\Entity\Term;
+
 /**
  * Implements hook_install().
  */
 function badcamp_blog_install()
 {
-
+  // Create Drupal-Planet
+  $term = Term::create([
+    'name' => 'Drupal Planet',
+    'vid' => 'tags',
+  ])->save();
+  drupal_set_message('Drupal Planet taxonomy term created!');
 }
