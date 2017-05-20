@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Implements hook_install().
@@ -14,6 +15,17 @@ function badcamp_blog_install()
     'path' => [
       'alias' => '/drupal-planet'
     ]
-  ])->save();
+  ]);
+  $term->save();
   drupal_set_message('Drupal Planet taxonomy term created!');
+
+  $container = \Drupal::getContainer();
+  $alias_storage = $container->get('path.alias_storage');
+  $pid = 0;
+  $source = '/taxonomy/term/' . $term->id()  . '/feed';
+  $alias = '/drupal-planet/feed';
+  $langcode = LanguageInterface::LANGCODE_NOT_SPECIFIED;
+  $alias_storage->save($source, $alias, $langcode, $pid);
+
 }
+
